@@ -1,17 +1,26 @@
 import tkinter as tk
 import math
 
+#my libs
+import  randompicker
+
 class SpinningWheelApp:
-    def __init__(self, root):
+    def __init__(self, root,item_list):
         self.root = root
         self.root.title("Dönen Çark")
         self.canvas = tk.Canvas(root, width=400, height=400, bg="white")
         self.canvas.pack()
+        self.item_list = item_list
+
+        print(self.item_list)
 
         self.angle = 0
-        self.num_segments = 8
+        self.num_segments = len(self.item_list)
         self.create_wheel()
         self.update_wheel()
+
+
+        
 
     def create_wheel(self):
         self.canvas.delete("wheel")
