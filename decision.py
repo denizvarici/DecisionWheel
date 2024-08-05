@@ -29,15 +29,14 @@ listBoxChoice.pack(side="left")
 btnDeleteFromListBox = tk.Button(frame2,text="Delete",command=lambda:delete_from_listbox())
 btnDeleteFromListBox.pack(side="top",padx=10)
 
-btnTen = tk.Button(frame2,text="Add10",command=lambda:add_0_to_10())
-btnTen.pack(side="top",padx=10)
+btnDeleteAll = tk.Button(frame2,text="DeleteAll",command=lambda:deleteAllFromListBox())
+btnDeleteAll.pack(side="top",padx=10)
 
 btnSpinTheWheel = tk.Button(frame3,text="SPIN THE WHEEL",command=lambda:spin_the_wheel())
 btnSpinTheWheel.pack(side="bottom")
 
-def add_0_to_10():
-    for i in range(10):
-        listBoxChoice.insert(i,i)
+def deleteAllFromListBox():
+    listBoxChoice.delete(0,tk.END)
     
 
 def delete_from_listbox():
@@ -61,9 +60,9 @@ def spin_the_wheel():
     else:
         listBoxItems = listBoxChoice.get(0,tk.END)
         item_list = list(listBoxItems)
-        stop_angle = randomChoicerReturnsAngle(len(item_list))
+        picked_index,stop_angle = randomChoicerReturnsAngle(len(item_list))
         root2 = tk.Tk()
-        app2 = SpinningWheelApp(root2,item_list)
+        app2 = SpinningWheelApp(root2,item_list,picked_index)
         app2.start_spinning(stop_angle)
         root2.mainloop()
         
