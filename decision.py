@@ -56,6 +56,7 @@ def spin_the_wheel():
         item_list = list(listBoxItems)
         root2 = tk.Tk()
         app2 = SpinningWheelApp(root2,item_list)
+        app2.start_spinning(180)
         root2.mainloop()
         
 
