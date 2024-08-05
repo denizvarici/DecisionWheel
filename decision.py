@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from decisionwheel import SpinningWheelApp
-
+from randompicker import randomChoicerReturnsAngle
 root = tk.Tk()
 root.title("Decision Form")
 root.geometry("500x500")
@@ -29,9 +29,16 @@ listBoxChoice.pack(side="left")
 btnDeleteFromListBox = tk.Button(frame2,text="Delete",command=lambda:delete_from_listbox())
 btnDeleteFromListBox.pack(side="top",padx=10)
 
+btnTen = tk.Button(frame2,text="Add10",command=lambda:add_0_to_10())
+btnTen.pack(side="top",padx=10)
+
 btnSpinTheWheel = tk.Button(frame3,text="SPIN THE WHEEL",command=lambda:spin_the_wheel())
 btnSpinTheWheel.pack(side="bottom")
 
+def add_0_to_10():
+    for i in range(10):
+        listBoxChoice.insert(i,i)
+    
 
 def delete_from_listbox():
     selected_indis = listBoxChoice.curselection()
@@ -54,9 +61,10 @@ def spin_the_wheel():
     else:
         listBoxItems = listBoxChoice.get(0,tk.END)
         item_list = list(listBoxItems)
+        stop_angle = randomChoicerReturnsAngle(len(item_list))
         root2 = tk.Tk()
         app2 = SpinningWheelApp(root2,item_list)
-        app2.start_spinning(180)
+        app2.start_spinning(stop_angle)
         root2.mainloop()
         
 

@@ -23,14 +23,7 @@ class SpinningWheelApp:
         self.stop_angle = None
         self.create_wheel()
 
-        #burada hangi öğe seçildi onu random olarak hesaplıcaz
-        
-
-
-
-
-        # self.update_wheel()
-
+    
 
         
 
@@ -39,16 +32,16 @@ class SpinningWheelApp:
         self.center_x = 200
         self.center_y = 200
         self.radius = 150
-        self.segment_angle = 360 / self.num_segments
-
+        self.segment_angle = 360 / self.num_segments #4
         for i in range(self.num_segments):
-            start_angle = i * self.segment_angle + self.angle
-            end_angle = (i + 1) * self.segment_angle + self.angle
+            start_angle = i * self.segment_angle + self.angle    
+            end_angle = (i + 1) * self.segment_angle + self.angle 
             text = self.item_list[i]
             self.draw_segment(start_angle, end_angle,text)
 
     def draw_segment(self, start_angle, end_angle, text):
         # draw sphere
+        self.canvas.create_arc
         self.canvas.create_arc(
             self.center_x - self.radius, self.center_y - self.radius,
             self.center_x + self.radius, self.center_y + self.radius,
@@ -65,7 +58,7 @@ class SpinningWheelApp:
 
     def update_wheel(self):
         if self.is_spinning:
-            self.angle += self.speed 
+            self.angle -= self.speed 
             if self.stop_angle is not None:
                 angle_diff = (self.stop_angle - self.angle) % 360
                 if angle_diff < self.speed:
